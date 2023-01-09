@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container-fluid bg-dark mb-30">
+    <div class="row px-xl-5">
+        <div class="col-lg-9">
+            <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 py-lg-0 px-0">
+                <div class="collapse navbar-collapse justify-content-between">
+                    <div class="navbar-nav mr-auto py-0">
+                        <a href="/" class="nav-item nav-link">Home</a>
+                        <a 
+                            href="/new"
+                            class="nav-item nav-link active">Create Product
+                        </a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+</div>
+{# 
+<form action="upload.php" method="post" enctype="multipart/form-data">
+  Select image to upload:
+  <input type="file" name="fileToUpload" id="fileToUpload">
+  <input type="submit" value="Upload Image" name="submit">
+</form> #}
+<div class="container-fluid pt-5">
+    <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">NEW PRODUCT</span></h2>
+    <div class="row px-xl-5 pb-3 ml-5">
+        <form method="post">
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Photo : </label>
+                <input type="file" name="fileToUpload">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Product name : </label>
+                <input type="text" name="product_name">
+            </div>
+            <div class="form-group">
+                <label type="number" name="note">Product description : </label>
+                <input type="integer" name="description">
+            </div>
+            <input type="submit"  value="Create">
+        </form>
+    </div>
+</div>
+{% endblock %}

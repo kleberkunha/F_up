@@ -1,0 +1,108 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+    <div class="container-fluid bg-dark mb-30">
+        <div class="row px-xl-5">
+            <div class="col-lg-9">
+                <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 py-lg-0 px-0">
+                    <div class="collapse navbar-collapse justify-content-between">
+                        <div class="navbar-nav mr-auto py-0">
+                            <a href="/" class="nav-item nav-link">Home</a>
+                            <a 
+                                href="/new"
+                                class="nav-item nav-link active">Create Product
+                            </a>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Show product page</span></h2>
+    <div class="container-fluid pt-5 d-flex">
+        <div class="col-lg-3 col-md-4 col-sm-6 pb-1 ml-5">
+            <a class="text-decoration-none" href="">
+                <div class="cat-item d-flex align-items-center mb-4">
+                    <div class="overflow-hidden" style="width: 100px; height: 100px;">
+                        <img class="img-fluid" src="img/cat-1.jpg" alt="">
+                    </div>
+                    <div class="flex-fill pl-3  overflow-hidden">
+                        <h6>{{product.name}}</h6>
+                        <small class="text-body">{{product.description}}
+                    </div>
+                </div>
+            </a>
+            <h6 class="section-title position-relative text-uppercase "><span class="bg-secondary pr-3">Comments</span></h6>
+
+            <div>
+                {% for comment in comments|reverse %}
+                    Name : {{ comment.personName }}<br>
+                    Email : {{ comment.email }}<br>
+                    Note : {{ comment.notes }} of 10 <br>
+                    Commentary : {{ comment.commentDescription }}<br>
+                    <a href="{{ path('delete_comment', {id: comment.id}) }}"> Delete</a>
+                    <br>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-9 px-xl-5 pb-3 ml-5">
+            <form method="post", action="{{ path('commentaires_new', {'id': product.id}) }}">
+                <h6 class="section-title position-relative text-uppercase "><span class="bg-secondary pr-3">Create Comment</span></h6>
+
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Name : </label>
+                    <input type="text" name="person_name" required>
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Email : </label>
+                    <input type="text" name="comment_email" required>
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Note : </label>
+                    <input type="number" name="product_note" min="0" max="10" required>
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Comment : </label>
+                    <textarea type="textArea" name="comment_text"></textarea>
+                </div>
+                <input type="submit" value="Create">
+            </form>
+        </div>
+    </div>
+
+    <div class="ml-5 pt-5">
+        <form method="GET">
+            <label for="products">Sort by note :</label>
+            <select name="commentNote">
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+            <input type="submit" value="Search">
+        </form>
+
+        <h1>Comments sorted</h1>
+
+         {{ result }}
+    </div>
+
+{#             {% for comment in sorted %}
+                Name : {{ comment.personName }}<br>
+                Email : {{ comment.email }}<br>
+                Note : {{ comment.notes }}<br>
+                Commentary : {{ comment.commentDescription }}<br>
+                <a href="{{ path('delete_comment', {id: comment.id}) }}"> Delete</a>
+                <br>
+            {% endfor %} #}
+    
+{% endblock %}
