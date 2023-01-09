@@ -23,18 +23,19 @@
     <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Show product page</span></h2>
     <div class="container-fluid pt-5 d-flex">
         <div class="col-lg-3 col-md-4 col-sm-6 pb-1 ml-5">
-            <a class="text-decoration-none" href="">
-                <div class="cat-item d-flex align-items-center mb-4">
-                    <div class="overflow-hidden" style="width: 100px; height: 100px;">
-                        <img class="img-fluid" src="img/cat-1.jpg" alt="">
-                    </div>
-                    <div class="flex-fill pl-3  overflow-hidden">
-                        <h6>{{product.name}}</h6>
-                        <small class="text-body">{{product.description}}
-                    </div>
+            <div class="cat-item d-flex align-items-center mb-4">
+                <div class="overflow-hidden" style="width: 100px; height: 100px;">
+                    <img class="img-fluid" src="https://picsum.photos/200" alt="">
                 </div>
-            </a>
-            <h6 class="section-title position-relative text-uppercase "><span class="bg-secondary pr-3">Comments</span></h6>
+                <div class="flex-fill pl-3  overflow-hidden">
+                    <h6>{{product.name}}</h6>
+                    <small class="text-body">{{product.description}}
+                </div>
+                <div class="p-3">
+                    comments : {{ count }}
+                </div>
+            </div>
+            <h6 class="section-title position-relative text-uppercase "><span class="bg-secondary pr-3">Comments :</span></h6>
 
             <div>
                 {% for comment in comments|reverse %}
@@ -93,7 +94,9 @@
 
         <h1>Comments sorted</h1>
 
-         {{ result }}
+                                                
+
+
     </div>
 
 {#             {% for comment in sorted %}

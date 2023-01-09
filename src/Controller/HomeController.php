@@ -1,7 +1,7 @@
 <?php
 namespace App\Controller;
 
-
+use App\Entity\Commentaires;
 use App\Entity\Products;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,15 +17,9 @@ class HomeController extends AbstractController
     public function index(ProductsRepository $productRepo): Response
     {       
         $products = $productRepo->findAll();
-
-
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
             'products' => $products,
         ]);
-        
     }
-
-
-
 }

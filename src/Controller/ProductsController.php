@@ -51,7 +51,7 @@ class ProductsController extends AbstractController
         return $this->render('products/show.html.twig');
     }
 
-    #[Route('/products/{id}/commentNote', name: 'commentNote', methods: ['GET'])]
+/*     #[Route('/products/{id}/commentNote', name: 'commentNote', methods: ['GET'])]
     public function sortByNote($id,Commentaires $comment, Request $request): Response
     {
         if ($_SERVER["REQUEST_METHOD"] == "GET"){
@@ -64,16 +64,18 @@ class ProductsController extends AbstractController
             ]);
         }
         return $this->render('products/show.html.twig');
-    }
+    } */
 
     #[Route('/products/{id}', methods: ['GET','POST'], name: 'show_product')]
     public function show(Products $product, Request $request, CommentairesRepository $commentRepo): Response
     {
+        $count = $product->getCommentaireId()->count();
         $comments = $product->getCommentaireId();
 
         return $this->render('products/show.html.twig', [
             'product' => $product,
             'comments' => $comments,
+            'count' => $count,
         ]);
     }
 
